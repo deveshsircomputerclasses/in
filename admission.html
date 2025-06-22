@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admission Form - DEVESH SIR COMPUTER CLASSES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Header -->
+<header class="bg-blue-900 text-white text-center py-4">
+  <h1 class="text-2xl font-bold">Admission Form</h1>
+</header>
+
+<!-- Admission Form Section -->
+<section class="py-10 px-4">
+  <div class="max-w-4xl mx-auto bg-white p-8 rounded shadow">
+    <form action="#" method="POST" enctype="multipart/form-data" class="space-y-6">
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block mb-1 font-medium">Student Name</label>
+          <input type="text" name="student_name" class="w-full border p-2 rounded" required />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Father's Name</label>
+          <input type="text" name="father_name" class="w-full border p-2 rounded" required />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Mother's Name</label>
+          <input type="text" name="mother_name" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Gender</label>
+          <select name="gender" class="w-full border p-2 rounded">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Date of Birth</label>
+          <input type="date" name="dob" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Category</label>
+          <select name="category" class="w-full border p-2 rounded">
+            <option value="">Select</option>
+            <option>General</option>
+            <option>OBC</option>
+            <option>SC</option>
+            <option>ST</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Aadhar Number</label>
+          <input type="text" name="aadhar" maxlength="12" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Email</label>
+          <input type="email" name="email" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Mobile Number</label>
+          <input type="tel" name="mobile" maxlength="10" class="w-full border p-2 rounded" required />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">WhatsApp Number</label>
+          <input type="tel" name="whatsapp" maxlength="10" class="w-full border p-2 rounded" />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block mb-1 font-medium">Address</label>
+          <textarea name="address" rows="2" class="w-full border p-2 rounded"></textarea>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">State</label>
+          <input type="text" name="state" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">District</label>
+          <input type="text" name="district" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Pin Code</label>
+          <input type="text" name="pin" maxlength="6" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Course Name</label>
+          <select name="course" class="w-full border p-2 rounded">
+            <option value="">Select Course</option>
+            <option>ADCA</option>
+            <option>DCA</option>
+            <option>CCC</option>
+            <option>Tally Prime</option>
+            <option>'O' Level</option>
+            <option>Excel Advance</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Duration</label>
+          <input type="text" name="duration" placeholder="e.g. 6 Months" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Fees</label>
+          <input type="text" name="fees" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Admission Date</label>
+          <input type="date" name="admission_date" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Profile Photo</label>
+          <input type="file" name="photo" accept="image/*" class="w-full border p-2 rounded" />
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Signature</label>
+          <input type="file" name="signature" accept="image/*" class="w-full border p-2 rounded" />
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800">Submit Form</button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-900 text-white text-center py-4 mt-6">
+  <p class="text-sm">&copy; 2025 DEVESH SIR COMPUTER CLASSES. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
