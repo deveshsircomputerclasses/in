@@ -104,3 +104,92 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Your Free Resume</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body { background: #eef2f7; font-family: 'Helvetica', sans-serif; margin:0; padding:0; }
+    .wrapper { max-width:600px; margin:30px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.1); }
+    h1 { text-align:center; color:#333; margin-bottom:20px; }
+    input, textarea, button { width:100%; margin-top:12px; padding:12px; border-radius:6px; border:1px solid #ccc; font-size:15px; }
+    textarea { min-height:80px; resize:vertical; }
+    #photoPreview { display:none; margin:10px auto; width:100px; height:100px; object-fit:cover; border-radius:50%; border:2px solid #007bff; }
+    button { background:#007bff; color:#fff; font-size:17px; border:none; cursor:pointer; }
+    button:hover { background:#0056b3; }
+    .note { text-align:center; margin-top:10px; color:#555; font-size:14px; }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <h1>📄 Create 100% Free Resume PDF</h1>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="mobile" placeholder="Mobile Number">
+    <input type="email" id="email" placeholder="Email Address">
+    <textarea id="education" placeholder="Educational Qualification"></textarea>
+    <textarea id="experience" placeholder="Work Experience"></textarea>
+    <textarea id="skills" placeholder="Skills (e.g., MS Office, Typing)"></textarea>
+    <textarea id="address" placeholder="Address"></textarea>
+
+    <input type="file" id="photo" accept="image/*">
+    <img id="photoPreview" alt="Photo Preview">
+
+    <button onclick="generateResume()">Download Resume PDF</button>
+    <p class="note">100% Free, No Login Required, Mobile Friendly</p>
+  </div>
+
+  <script>
+    let photoData = '';
+    document.getElementById('photo').addEventListener('change', e => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        photoData = ev.target.result;
+        const img = document.getElementById('photoPreview');
+        img.src = photoData;
+        img.style.display = 'block';
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+
+    async function generateResume() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const name = document.getElementById('name').value;
+      const mobile = document.getElementById('mobile').value;
+      const email = document.getElementById('email').value;
+      const education = document.getElementById('education').value;
+      const experience = document.getElementById('experience').value;
+      const skills = document.getElementById('skills').value;
+      const address = document.getElementById('address').value;
+      const date = new Date().toLocaleDateString();
+
+      doc.setFontSize(18);
+      doc.text('RESUME', 105, 20, null, null, 'center');
+
+      if (photoData) {
+        doc.addImage(photoData, 'JPEG', 150, 25, 35, 35);
+      }
+
+      doc.setFontSize(12);
+      doc.text(`Name: ${name}`, 20, 60);
+      doc.text(`Mobile: ${mobile}`, 20, 68);
+      doc.text(`Email: ${email}`, 20, 76);
+      doc.text(`Education: ${education}`, 20, 90);
+      doc.text(`Experience: ${experience}`, 20, 110);
+      doc.text(`Skills: ${skills}`, 20, 130);
+      doc.text(`Address: ${address}`, 20, 150);
+      doc.text(`Date: ${date}`, 20, 180);
+      doc.text(`Signature: ____________`, 120, 180);
+
+      doc.save('Resume.pdf');
+    }
+  </script>
+
+</body>
+</html>
