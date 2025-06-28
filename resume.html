@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free Resume Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      background: #f0f4f8;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto 0;
+    }
+    button:hover {
+      background: #218838;
+    }
+    .note {
+      text-align: center;
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📄 Create Resume - Free PDF</h1>
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="mobile" placeholder="Mobile Number">
+    <input type="email" id="email" placeholder="Email Address">
+    <textarea id="education" placeholder="Educational Qualification"></textarea>
+    <textarea id="experience" placeholder="Work Experience (Optional)"></textarea>
+    <textarea id="skills" placeholder="Skills (MS Office, Typing, etc.)"></textarea>
+    <textarea id="address" placeholder="Address"></textarea>
+
+    <button onclick="generatePDF()">🎯 Download PDF Resume</button>
+
+    <p class="note">100% Free | No Login Required | Mobile Friendly</p>
+  </div>
+
+  <script>
+    async function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const name = document.getElementById("name").value;
+      const mobile = document.getElementById("mobile").value;
+      const email = document.getElementById("email").value;
+      const education = document.getElementById("education").value;
+      const experience = document.getElementById("experience").value;
+      const skills = document.getElementById("skills").value;
+      const address = document.getElementById("address").value;
+
+      const today = new Date().toLocaleDateString();
+
+      doc.setFontSize(16);
+      doc.text(`RESUME`, 90, 20);
+      doc.setFontSize(12);
+      doc.text(`Name: ${name}`, 20, 30);
+      doc.text(`Mobile: ${mobile}`, 20, 38);
+      doc.text(`Email: ${email}`, 20, 46);
+      doc.text(`\nEducational Qualification:\n${education}`, 20, 60);
+      doc.text(`\nWork Experience:\n${experience}`, 20, 90);
+      doc.text(`\nSkills:\n${skills}`, 20, 120);
+      doc.text(`\nAddress:\n${address}`, 20, 150);
+      doc.text(`\nDate: ${today}`, 20, 190);
+      doc.text(`Signature: ____________________`, 120, 190);
+
+      doc.save("Resume.pdf");
+    }
+  </script>
+
+</body>
+</html>
