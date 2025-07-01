@@ -1,322 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Free Resume Generator</title>
+  <meta charset="UTF-8" />
+  <title>Resume Creator</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
-      background: #f0f4f8;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
+      font-family: Arial, sans-serif;
       padding: 20px;
     }
-    .container {
-      background: #fff;
-      max-width: 600px;
-      margin: auto;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #007bff;
-      margin-bottom: 20px;
+    label {
+      font-weight: bold;
     }
     input, textarea {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+    .preview {
       border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
+      padding: 15px;
+      margin-top: 20px;
     }
-    button {
-      background: #28a745;
+    .btn {
+      background-color: green;
       color: white;
+      padding: 10px 15px;
       border: none;
-      padding: 12px 20px;
-      font-size: 18px;
-      border-radius: 10px;
       cursor: pointer;
-      display: block;
-      margin: 20px auto 0;
-    }
-    button:hover {
-      background: #218838;
-    }
-    .note {
-      text-align: center;
-      font-size: 14px;
-      color: gray;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>📄 Create Resume - Free PDF</h1>
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="text" id="mobile" placeholder="Mobile Number">
-    <input type="email" id="email" placeholder="Email Address">
-    <textarea id="education" placeholder="Educational Qualification"></textarea>
-    <textarea id="experience" placeholder="Work Experience (Optional)"></textarea>
-    <textarea id="skills" placeholder="Skills (MS Office, Typing, etc.)"></textarea>
-    <textarea id="address" placeholder="Address"></textarea>
+  <h1>🔹 अपना रिज्यूम बनाएं</h1>
 
-    <button onclick="generatePDF()">🎯 Download PDF Resume</button>
+  <form id="resumeForm">
+    <label>नाम:</label>
+    <input type="text" id="name" required />
 
-    <p class="note">100% Free | No Login Required | Mobile Friendly</p>
-  </div>
+    <label>मोबाइल नंबर:</label>
+    <input type="text" id="phone" required />
 
-  <script>
-    async function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+    <label>ईमेल:</label>
+    <input type="email" id="email" required />
 
-      const name = document.getElementById("name").value;
-      const mobile = document.getElementById("mobile").value;
-      const email = document.getElementById("email").value;
-      const education = document.getElementById("education").value;
-      const experience = document.getElementById("experience").value;
-      const skills = document.getElementById("skills").value;
-      const address = document.getElementById("address").value;
+    <label>एड्रेस:</label>
+    <textarea id="address"></textarea>
 
-      const today = new Date().toLocaleDateString();
+    <label>शिक्षा:</label>
+    <textarea id="education" required></textarea>
 
-      doc.setFontSize(16);
-      doc.text(`RESUME`, 90, 20);
-      doc.setFontSize(12);
-      doc.text(`Name: ${name}`, 20, 30);
-      doc.text(`Mobile: ${mobile}`, 20, 38);
-      doc.text(`Email: ${email}`, 20, 46);
-      doc.text(`\nEducational Qualification:\n${education}`, 20, 60);
-      doc.text(`\nWork Experience:\n${experience}`, 20, 90);
-      doc.text(`\nSkills:\n${skills}`, 20, 120);
-      doc.text(`\nAddress:\n${address}`, 20, 150);
-      doc.text(`\nDate: ${today}`, 20, 190);
-      doc.text(`Signature: ____________________`, 120, 190);
+    <label>अनुभव:</label>
+    <textarea id="experience"></textarea>
 
-      doc.save("Resume.pdf");
-    }
-  </script>
+    <label>कौशल (Skills):</label>
+    <textarea id="skills"></textarea>
 
-</body>
-</html>
+    <button type="button" class="btn" onclick="generateResume()">Generate Resume</button>
+  </form>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Create Your Free Resume</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <style>
-    body { background: #eef2f7; font-family: 'Helvetica', sans-serif; margin:0; padding:0; }
-    .wrapper { max-width:600px; margin:30px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.1); }
-    h1 { text-align:center; color:#333; margin-bottom:20px; }
-    input, textarea, button { width:100%; margin-top:12px; padding:12px; border-radius:6px; border:1px solid #ccc; font-size:15px; }
-    textarea { min-height:80px; resize:vertical; }
-    #photoPreview { display:none; margin:10px auto; width:100px; height:100px; object-fit:cover; border-radius:50%; border:2px solid #007bff; }
-    button { background:#007bff; color:#fff; font-size:17px; border:none; cursor:pointer; }
-    button:hover { background:#0056b3; }
-    .note { text-align:center; margin-top:10px; color:#555; font-size:14px; }
-  </style>
-</head>
-<body>
-
-  <div class="wrapper">
-    <h1>📄 Create 100% Free Resume PDF</h1>
-
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="text" id="mobile" placeholder="Mobile Number">
-    <input type="email" id="email" placeholder="Email Address">
-    <textarea id="education" placeholder="Educational Qualification"></textarea>
-    <textarea id="experience" placeholder="Work Experience"></textarea>
-    <textarea id="skills" placeholder="Skills (e.g., MS Office, Typing)"></textarea>
-    <textarea id="address" placeholder="Address"></textarea>
-
-    <input type="file" id="photo" accept="image/*">
-    <img id="photoPreview" alt="Photo Preview">
-
-    <button onclick="generateResume()">Download Resume PDF</button>
-    <p class="note">100% Free, No Login Required, Mobile Friendly</p>
-  </div>
+  <div class="preview" id="preview" style="display:none;"></div>
+  <button id="downloadBtn" class="btn" onclick="downloadPDF()" style="display:none;">Download PDF</button>
 
   <script>
-    let photoData = '';
-    document.getElementById('photo').addEventListener('change', e => {
-      const reader = new FileReader();
-      reader.onload = ev => {
-        photoData = ev.target.result;
-        const img = document.getElementById('photoPreview');
-        img.src = photoData;
-        img.style.display = 'block';
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    });
-
-    async function generateResume() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-
+    function generateResume() {
       const name = document.getElementById('name').value;
-      const mobile = document.getElementById('mobile').value;
+      const phone = document.getElementById('phone').value;
       const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
       const education = document.getElementById('education').value;
       const experience = document.getElementById('experience').value;
       const skills = document.getElementById('skills').value;
-      const address = document.getElementById('address').value;
-      const date = new Date().toLocaleDateString();
 
-      doc.setFontSize(18);
-      doc.text('RESUME', 105, 20, null, null, 'center');
-
-      if (photoData) {
-        doc.addImage(photoData, 'JPEG', 150, 25, 35, 35);
-      }
-
-      doc.setFontSize(12);
-      doc.text(`Name: ${name}`, 20, 60);
-      doc.text(`Mobile: ${mobile}`, 20, 68);
-      doc.text(`Email: ${email}`, 20, 76);
-      doc.text(`Education: ${education}`, 20, 90);
-      doc.text(`Experience: ${experience}`, 20, 110);
-      doc.text(`Skills: ${skills}`, 20, 130);
-      doc.text(`Address: ${address}`, 20, 150);
-      doc.text(`Date: ${date}`, 20, 180);
-      doc.text(`Signature: ____________`, 120, 180);
-
-      doc.save('Resume.pdf');
+      const preview = `
+        <h2>${name}</h2>
+        <p><strong>📞:</strong> ${phone} | <strong>✉️:</strong> ${email}</p>
+        <p><strong>🏠:</strong> ${address}</p>
+        <hr>
+        <h3>🎓 शिक्षा</h3>
+        <p>${education}</p>
+        <h3>💼 अनुभव</h3>
+        <p>${experience}</p>
+        <h3>💡 कौशल</h3>
+        <p>${skills}</p>
+      `;
+      document.getElementById('preview').innerHTML = preview;
+      document.getElementById('preview').style.display = 'block';
+      document.getElementById('downloadBtn').style.display = 'inline-block';
     }
-  </script>
 
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resume Generator</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    h2 { text-align: center; }
-    .container { max-width: 700px; margin: auto; }
-    label { font-weight: bold; display: block; margin-top: 10px; }
-    input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
-    #photoPreview { margin-top: 10px; width: 100px; height: 100px; object-fit: cover; border: 1px solid #ccc; }
-    button { margin-top: 20px; padding: 10px 20px; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>Resume Generator</h2>
-
-    <label>Full Name</label>
-    <input type="text" id="name" placeholder="Enter your name" />
-
-    <label>Father's Name</label>
-    <input type="text" id="father" placeholder="Father's Name" />
-
-    <label>Date of Birth</label>
-    <input type="date" id="dob" />
-
-    <label>Mobile Number</label>
-    <input type="text" id="mobile" />
-
-    <label>Email</label>
-    <input type="email" id="email" />
-
-    <label>Address</label>
-    <textarea id="address"></textarea>
-
-    <label>Academic Qualification</label>
-    <input type="text" id="qualification" placeholder="10th, UP Board, 2024, 51%" />
-
-    <label>Other Qualification</label>
-    <input type="text" id="other" placeholder="ADCA Course" />
-
-    <label>Work Experience</label>
-    <input type="text" id="experience" placeholder="Computer Teacher" />
-
-    <label>Languages Known</label>
-    <input type="text" id="language" placeholder="Hindi, English" />
-
-    <label>Gender</label>
-    <input type="text" id="gender" />
-
-    <label>Nationality</label>
-    <input type="text" id="nationality" value="India" />
-
-    <label>Marital Status</label>
-    <input type="text" id="marital" placeholder="Unmarried / Married" />
-
-    <label>Upload Photo</label>
-    <input type="file" id="photo" accept="image/*" />
-    <img id="photoPreview" src="#" alt="Preview" style="display:none;" />
-
-    <button onclick="generateResume()">Download Resume PDF</button>
-  </div>
-
-  <script>
-    let uploadedImage = null;
-
-    document.getElementById('photo').addEventListener('change', function(e) {
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        uploadedImage = event.target.result;
-        const img = document.getElementById('photoPreview');
-        img.src = uploadedImage;
-        img.style.display = 'block';
-      }
-      reader.readAsDataURL(e.target.files[0]);
-    });
-
-    async function generateResume() {
+    async function downloadPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-
-      doc.setFontSize(16);
-      doc.text("CURRICULUM VITAE", 70, 15);
-
-      if (uploadedImage) {
-        doc.addImage(uploadedImage, "JPEG", 160, 10, 30, 30);
-      }
-
-      doc.setFontSize(12);
-      doc.text(`Name: ${document.getElementById("name").value}`, 10, 40);
-      doc.text(`Father's Name: ${document.getElementById("father").value}`, 10, 48);
-      doc.text(`Date of Birth: ${document.getElementById("dob").value}`, 10, 56);
-      doc.text(`Mobile: ${document.getElementById("mobile").value}`, 10, 64);
-      doc.text(`Email: ${document.getElementById("email").value}`, 10, 72);
-      doc.text(`Address: ${document.getElementById("address").value}`, 10, 80);
-
-      doc.text("ACADEMIC QUALIFICATION:", 10, 92);
-      doc.text(`${document.getElementById("qualification").value}`, 10, 100);
-
-      doc.text("OTHER QUALIFICATION:", 10, 112);
-      doc.text(`${document.getElementById("other").value}`, 10, 120);
-
-      doc.text("WORK EXPERIENCE:", 10, 132);
-      doc.text(`${document.getElementById("experience").value}`, 10, 140);
-
-      doc.text("PERSONAL INFORMATION:", 10, 152);
-      doc.text(`Language Known: ${document.getElementById("language").value}`, 10, 160);
-      doc.text(`Gender: ${document.getElementById("gender").value}`, 10, 168);
-      doc.text(`Nationality: ${document.getElementById("nationality").value}`, 10, 176);
-      doc.text(`Marital Status: ${document.getElementById("marital").value}`, 10, 184);
-
-      doc.text("DECLARATION:", 10, 196);
-      doc.text("I hereby declare that the above information is true to the best of my knowledge.", 10, 204);
-
-      doc.text(`Place: ${document.getElementById("address").value}`, 10, 216);
-      doc.text(`( ${document.getElementById("name").value} )`, 150, 216);
-
-      doc.save(`${document.getElementById("name").value}_Resume.pdf`);
+      doc.html(document.getElementById('preview'), {
+        callback: function (doc) {
+          doc.save("My_Resume.pdf");
+        },
+        x: 10,
+        y: 10
+      });
     }
   </script>
+
 </body>
 </html>
